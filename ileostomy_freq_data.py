@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import datetime, date, time
+from os import system
 
 connection = sqlite3.connect('ileostomy_data_frequency.db')
 c = connection.cursor()
@@ -102,16 +103,28 @@ def get_notes():
     answer = input('Any additional notes? : ')
     return answer.capitalize()
 
+def clear_terminal():
+    return system('clear')
 
+clear_terminal()
 getting_date = get_date()
+clear_terminal()
 getting_time = get_time()
+clear_terminal()
 getting_amount = get_amount()
+clear_terminal()
 getting_consistency = get_consistency()
+clear_terminal()
 getting_color = get_color()
+clear_terminal()
 getting_ballooning = get_boolean('Ballooning')
+clear_terminal()
 getting_pancaking = get_boolean('Pancaking')
+clear_terminal()
 getting_leakage = get_boolean('Leakage')
+clear_terminal()
 getting_notes = get_notes()
+clear_terminal()
 
 insert_data_entry(getting_date, getting_time, getting_amount, getting_consistency, getting_color,
                   getting_ballooning, getting_pancaking, getting_leakage, getting_notes)
