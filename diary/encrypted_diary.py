@@ -138,7 +138,16 @@ def get_emotional_state():
 
 
 def insert_data(conn, data):
-    pass
+    conn.execute('''
+        INSERT INTO stoma_diary (
+            date, time, diary_entry, stress_level, anxiety, fatigue, pain_level,
+            stoma_bag_change, leakage, medication_taken, social_work_disruption,
+            sleep_disruption, emotional_state
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+
+                 ''', data)
+    conn.commit()
 
 
 def main():
@@ -151,6 +160,11 @@ def main():
 
     conn = connect_to_db(db_name, passphrase)
     create_table(conn)
+
+    data = collect_data()
+    insert_data(conn, data)
+
+    print('entry added successfully')
 
 if __name__ == '__main__':
     main()
