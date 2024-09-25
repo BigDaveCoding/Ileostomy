@@ -68,7 +68,7 @@ def get_amount():
         try:
             answer = int(input('How full was your stoma? (0-100) : '))
             if answer >= 0 and answer <= 100:
-                return f'{str(answer)}%'
+                return answer
             else:
                 print('Invalid input. Please try again.')
         except ValueError:
