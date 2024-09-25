@@ -7,11 +7,11 @@ c = connection.cursor()
 def insert_data_entry(the_date = None, the_time = None, amount = None, consistency = None, color = None, ballooning = False,
                       pancaking = False, leakage = False, notes = None):
 
-    c.execute(''' INSERT INTO ileostomy_data_frequency (
+    c.execute(''' INSERT INTO ileostomy_frequency_log (
               date, time, amount, consistency, color, ballooning, pancaking, leakage, notes)
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-              '''), (the_date, the_time, amount, consistency, color,
-                     ballooning, pancaking, leakage, notes)
+              ''', (the_date, the_time, amount, consistency, color,
+                     ballooning, pancaking, leakage, notes))
     
     connection.commit()
     print('Entry added')
@@ -98,22 +98,20 @@ def get_boolean(var):
         else:
             print("Invalid input. Please enter Y or N")
 
+def get_notes():
+    answer = input('Any additional notes? : ')
+    return answer.capitalize()
 
 
-# getting_date = get_date()
-# print(getting_date)
-# getting_time = get_time()
-# print(getting_time)
-# getting_amount = get_amount()
-# print(getting_amount)
-# cons = get_consistency()
-# print(cons)
-# col = get_color()
-# print(col)
-ballo = get_boolean('Ballooning')
-print(ballo)
+getting_date = get_date()
+getting_time = get_time()
+getting_amount = get_amount()
+getting_consistency = get_consistency()
+getting_color = get_color()
+getting_ballooning = get_boolean('Ballooning')
+getting_pancaking = get_boolean('Pancaking')
+getting_leakage = get_boolean('Leakage')
+getting_notes = get_notes()
 
-
-
-
-    
+insert_data_entry(getting_date, getting_time, getting_amount, getting_consistency, getting_color,
+                  getting_ballooning, getting_pancaking, getting_leakage, getting_notes)
