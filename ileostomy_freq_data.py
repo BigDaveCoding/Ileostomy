@@ -73,6 +73,17 @@ def get_amount():
         except ValueError:
             print('Please enter a number.')
 
+def get_consistency():
+    while True:
+        try:
+            answer = int(input('1 being watery and 10 being solid, what was the consistency of your stoma? '))
+            if 1 <= answer <= 10:
+                return answer
+            else:
+                print('Invalid input. Please try again')
+        except ValueError:
+            print('Please enter a number from 1-10')
+
 
 # getting_date = get_date()
 # print(getting_date)
@@ -80,6 +91,8 @@ def get_amount():
 # print(getting_time)
 # getting_amount = get_amount()
 # print(getting_amount)
+cons = get_consistency()
+print(cons)
 
 
 
