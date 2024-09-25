@@ -61,19 +61,25 @@ def get_time():
         else:
             print("Invalid input. Please enter Y or N")
         
-        
-    
-        
-                    
-            
 
-        
+def get_amount():
+    while True:
+        try:
+            answer = int(input('How full was your stoma? (0-100) : '))
+            if answer >= 0 and answer <= 100:
+                return f'{str(answer)}%'
+            else:
+                print('Invalid input. Please try again.')
+        except ValueError:
+            print('Please enter a number.')
 
-    
+
 # getting_date = get_date()
 # print(getting_date)
-getting_time = get_time()
-print(getting_time)
+# getting_time = get_time()
+# print(getting_time)
+# getting_amount = get_amount()
+# print(getting_amount)
 
 
 
