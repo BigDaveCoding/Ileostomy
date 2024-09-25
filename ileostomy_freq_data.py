@@ -4,8 +4,18 @@ from datetime import datetime, date
 connection = sqlite3.connect('ileostomy_data_frequency.db')
 c = connection.cursor()
 
-def insert_data_entry(date):
-    pass
+def insert_data_entry(the_date = None, the_time = None, amount = None, consistency = None, color = None, ballooning = False,
+                      pancaking = False, leakage = False, notes = None):
+
+    c.execute(''' INSERT INTO ileostomy_data_frequency (
+              date, time, amount, consistency, color, ballooning, pancaking, leakage, notes)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+              '''), (the_date, the_time, amount, consistency, color,
+                     ballooning, pancaking, leakage, notes)
+    
+    connection.commit()
+    print('Entry added')
+
 
 
 def get_date():
@@ -29,14 +39,23 @@ def get_date():
                     print("Please try again in the correct format - day:month : ")
         else:
             print("Invalid input. Please enter Y or N")
+
+def get_time():
+    time = datetime.now().strftime("%I:%M%p")
+    return time
+        
+    
+        
                     
             
 
         
 
     
-getting_date = get_date()
-print(getting_date)
+# getting_date = get_date()
+# print(getting_date)
+getting_time = get_time()
+print(getting_time)
 
 
 
