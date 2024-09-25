@@ -9,7 +9,7 @@ def insert_data_entry(the_date = None, the_time = None, amount = None, consisten
                       pancaking = False, leakage = False, notes = None):
 
     c.execute(''' INSERT INTO ileostomy_frequency_log (
-              date, time, amount, consistency, color, ballooning, pancaking, leakage, notes)
+              date, time, amount_percent, consistency, color, ballooning, pancaking, leakage, notes)
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
               ''', (the_date, the_time, amount, consistency, color,
                      ballooning, pancaking, leakage, notes))
