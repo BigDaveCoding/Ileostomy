@@ -84,6 +84,21 @@ def get_consistency():
         except ValueError:
             print('Please enter a number from 1-10')
 
+def get_color():
+        answer = input('What color was the output? ')
+        return answer.title()
+
+def get_boolean(var):
+    while True:
+        answer = input(f'Was there any {var}? (Y/N) : ')
+        if answer == 'Y' or answer == "y":
+            return True
+        elif answer == "N" or answer == 'n':
+            return False
+        else:
+            print("Invalid input. Please enter Y or N")
+
+
 
 # getting_date = get_date()
 # print(getting_date)
@@ -91,8 +106,12 @@ def get_consistency():
 # print(getting_time)
 # getting_amount = get_amount()
 # print(getting_amount)
-cons = get_consistency()
-print(cons)
+# cons = get_consistency()
+# print(cons)
+# col = get_color()
+# print(col)
+ballo = get_boolean('Ballooning')
+print(ballo)
 
 
 
