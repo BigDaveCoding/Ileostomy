@@ -1,5 +1,5 @@
 import sqlite3
-from datetime import datetime, date
+from datetime import datetime, date, time
 
 connection = sqlite3.connect('ileostomy_data_frequency.db')
 c = connection.cursor()
@@ -41,8 +41,26 @@ def get_date():
             print("Invalid input. Please enter Y or N")
 
 def get_time():
-    time = datetime.now().strftime("%I:%M%p")
-    return time
+    # the_time = datetime.now().strftime("%I:%M%p")
+    while True:
+        current_time = input("Are you inputting data for the current time? (Y/N) ")
+        if current_time == "Y" or current_time == "y":
+            return datetime.now().strftime("%I:%M%p")
+        elif current_time == "N" or current_time == "n":
+            while True:
+                t_input = input('Please enter the data time in this format: hour:minute (example = 23:44) : ')
+                if ':' in t_input:
+                    t_split = t_input.split(':')
+                    try:
+                        new_time = time(int(t_split[0]), int(t_split[1]), 0)
+                        return new_time.strftime('%I:%M%p')
+                    except ValueError:
+                        print('Invalid Input. Please try again.')
+                else:
+                    print('Invalid input. Please try again: ')           
+        else:
+            print("Invalid input. Please enter Y or N")
+        
         
     
         
