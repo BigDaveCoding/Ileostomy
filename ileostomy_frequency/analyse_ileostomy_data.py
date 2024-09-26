@@ -15,4 +15,8 @@ else:
     print("There are no null values in the DataFrame")
 
 # Print descriptive statistics
-print(df.describe())
+# print('Descriptive statistics for the DataFrame')
+# print(df.describe(include='all'))
+print('value_counts for specific columns')
+print(df['consistency'].value_counts())
+print(df['amount_percent'].value_counts())
