@@ -52,5 +52,22 @@ def plot_histogram(column_name):
     plt.yticks(np.arange(0, max_y + 1, 1))
     plt.show()
 
-print(plot_histogram('amount_percent'))
-print(plot_histogram('consistency'))
+# print(plot_histogram('amount_percent'))
+# print(plot_histogram('consistency'))
+
+def overlay_hist(column_list):
+    
+    pass
+
+# df['amount_percent'].hist(bins=10, alpha=0.5, label='amount_percent')
+# df['consistency'].hist(bins=10, alpha=0.5, label='consistency')
+# plt.legend()
+# plt.show()
+
+df['consistency'].plot(kind='density', label='consistency')
+df['amount_percent'].plot(kind='density', label='amount')
+plt.title('Density plot of consistency & amount_percent')
+plt.xlabel('Consistency')
+plt.ylabel('Density')
+plt.legend()
+plt.show()
