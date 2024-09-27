@@ -56,18 +56,28 @@ def plot_histogram(column_name):
 # print(plot_histogram('consistency'))
 
 def overlay_hist(column_list):
-    
-    pass
+    num_columns = len(column_list)
+    width = 0.8 / num_columns
 
-# df['amount_percent'].hist(bins=10, alpha=0.5, label='amount_percent')
-# df['consistency'].hist(bins=10, alpha=0.5, label='consistency')
+    for column in column_list:
+        unique_vals = df[column].unique()
+        bins = np.arange(min(unique_vals) - 0.5, max(unique_vals) + 1.5, 1)
+        df[column].hist(bins=bins, alpha=0.5, label=column, edgecolor='black', rwidth=width)
+
+    max_x = max(df[column].max() for column in column_list)
+    plt.xticks(np.arange(0, max_x + 1, 1))
+    plt.xlabel('Value')
+    plt.ylabel('Frequency')
+    plt.title('Overlay Histogram')
+    plt.legend()
+    plt.show()
+
+print(overlay_hist(['amount_percent', 'consistency']))
+
+# df['consistency'].plot(kind='density', label='consistency')
+# df['amount_percent'].plot(kind='density', label='amount')
+# plt.title('Density plot of consistency & amount_percent')
+# plt.xlabel('Consistency')
+# plt.ylabel('Density')
 # plt.legend()
 # plt.show()
-
-df['consistency'].plot(kind='density', label='consistency')
-df['amount_percent'].plot(kind='density', label='amount')
-plt.title('Density plot of consistency & amount_percent')
-plt.xlabel('Consistency')
-plt.ylabel('Density')
-plt.legend()
-plt.show()
