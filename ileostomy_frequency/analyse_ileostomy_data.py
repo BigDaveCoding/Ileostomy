@@ -55,14 +55,35 @@ def plot_histogram(column_name):
 # print(plot_histogram('amount_percent'))
 # print(plot_histogram('consistency'))
 
+# def overlay_hist(column_list):
+#     num_columns = len(column_list)
+#     width = 0.8 / num_columns
+
+#     for column in column_list:
+#         unique_vals = df[column].unique()
+#         bins = np.arange(min(unique_vals) - 0.5, max(unique_vals) + 1.5, 1)
+#         df[column].hist(bins=bins, alpha=0.5, label=column, edgecolor='black', rwidth=width)
+
+#     max_x = max(df[column].max() for column in column_list)
+#     plt.xticks(np.arange(0, max_x + 1, 1))
+#     plt.xlabel('Value')
+#     plt.ylabel('Frequency')
+#     plt.title('Overlay Histogram')
+#     plt.legend()
+#     plt.show()
+
+# print(overlay_hist(['amount_percent', 'consistency']))
+
 def overlay_hist(column_list):
     num_columns = len(column_list)
-    width = 0.8 / num_columns
+    width = 0.8 / num_columns  # Adjust the width of the bars
 
-    for column in column_list:
+    for i, column in enumerate(column_list):
         unique_vals = df[column].unique()
         bins = np.arange(min(unique_vals) - 0.5, max(unique_vals) + 1.5, 1)
-        df[column].hist(bins=bins, alpha=0.5, label=column, edgecolor='black', rwidth=width)
+        # Shift the bins for each column to avoid overlap
+        shifted_bins = bins + (i * width) - (width * (num_columns - 1) / 2)
+        df[column].hist(bins=shifted_bins, alpha=0.5, label=column, edgecolor='black', rwidth=width)
 
     max_x = max(df[column].max() for column in column_list)
     plt.xticks(np.arange(0, max_x + 1, 1))
@@ -72,7 +93,8 @@ def overlay_hist(column_list):
     plt.legend()
     plt.show()
 
-print(overlay_hist(['amount_percent', 'consistency']))
+# Example usage
+overlay_hist(['amount_percent', 'consistency'])
 
 # df['consistency'].plot(kind='density', label='consistency')
 # df['amount_percent'].plot(kind='density', label='amount')
