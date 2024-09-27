@@ -66,8 +66,8 @@ def get_time():
 def get_amount():
     while True:
         try:
-            answer = int(input('How full was your stoma? (0-100) : '))
-            if answer >= 0 and answer <= 100:
+            answer = int(input('How full was your stoma? (0-10) : '))
+            if answer >= 0 and answer <= 10:
                 return answer
             else:
                 print('Invalid input. Please try again.')
