@@ -1,8 +1,13 @@
 import sqlite3
 from datetime import datetime, date, time
 from os import system
+import os
 
-connection = sqlite3.connect('ileostomy_data_frequency.db')
+script_dir = os.path.dirname(__file__)
+db_path = os.path.join(script_dir, 'ileostomy_data_frequency.db')
+
+
+connection = sqlite3.connect(db_path)
 c = connection.cursor()
 
 def insert_data_entry(the_date = None, the_time = None, amount = None, consistency = None, color = None, ballooning = False,
@@ -33,7 +38,8 @@ def get_date():
                     d_m_split = not_today.split(':')
                     try:
                         new_date = date(int(today_date.strftime("%G")), int(d_m_split[1]), int(d_m_split[0]))
-                        return new_date
+                        new_date_return = new_date.strftime("%x")
+                        return new_date_return
                     except ValueError:
                         print("Invalid day or month. Please try again. ")
                 else:
@@ -128,3 +134,5 @@ clear_terminal()
 
 insert_data_entry(getting_date, getting_time, getting_amount, getting_consistency, getting_color,
                   getting_ballooning, getting_pancaking, getting_leakage, getting_notes)
+
+connection.close()
